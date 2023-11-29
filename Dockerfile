@@ -20,5 +20,5 @@ COPY ./web $DWEB1
 RUN chown -R www-data ${DWEB1}
 RUN chmod -R u+x ${DWEB1}
 
-EXPOSE 80
+EXPOSE 81
 CMD apachectl -DFOREGROUND
