@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  webapache:
+    container_name: servapache
+    build:
+      context: ./../
+      dockerfile: ./prueba1/Dockerfile
+      #dockerfile: ./prueba1/Dockerfile_httpd
+    ports:
+      - "8080:80"
+    volumes:
+      - ../web:/var/www/html

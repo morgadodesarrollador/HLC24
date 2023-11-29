@@ -1,0 +1,23 @@
+FROM httpd
+
+#diferenciamos la ruta de un httpd o apache2
+ARG DWEB="/usr/local/apache2/htdocs"
+ARG DWEB1="/var/www/html"
+
+# Instala PHP y los módulos necesarios
+RUN apt-get update && apt-get install -y \
+    php \
+    libapache2-mod-php \
+    && rm -rf /var/lib/apt/lists/*
+
+# Configura Apache para procesar archivos PHP
+#RUN sed -i 's/#LoadModule\ php7_module/LoadModule\ php7_module/' /usr/local/apache2/conf/httpd.conf
+#RUN sed -i 's/index.html/index.php\ index.html/' /usr/local/apache2/conf/httpd.conf
+
+
+COPY ./web $DWEB
+RUN chown -R www-data ${DWEB}
+RUN chmod -R u+x ${DWEB}
+
+EXPOSE 80
+CMD ["httpd-foreground"]
